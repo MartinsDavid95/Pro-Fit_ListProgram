@@ -1,6 +1,12 @@
 package com.example.pro_fit_listprogram;
 
+import com.google.firebase.firestore.DocumentId;
+import com.google.firebase.firestore.Exclude;
+
 public class ProgramModel {
+    // firebase needed
+    @DocumentId
+    private String documentId;
     private String nomProgram;
     private String description;
     private int imageProgram;
@@ -46,5 +52,11 @@ public class ProgramModel {
 
     public void setFavorited(boolean favorited) {
         isFavorited = favorited;
+    }
+
+    // firebase needed
+    @Exclude
+    public String getDocumentId() {
+        return documentId;
     }
 }
