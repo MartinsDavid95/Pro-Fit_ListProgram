@@ -62,15 +62,40 @@ public class RecyclerProgramAdapter extends RecyclerView.Adapter<RecyclerProgram
 
                 if (program.isFavorited()) {
                     // Déplacez l'élément en haut de la liste
-                    programs.remove(originalPosition);
+                    programs.remove(position);
                     programs.add(0, program);
                 }else {
                     programs.remove(program);
-                    programs.add(originalPosition, program);
+                    programs.add(program);
                 }
                 notifyDataSetChanged();
             }
         });
+
+        /*// David modif Start 04/12
+        holder.favoriteImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int originalPosition = position;
+                program.setFavourite(!program.isFavourite());
+
+                if (program.isFavourite()) {
+                    // quand le program est favoris il repasse en haut
+                    programList.remove(position);
+                    programList.add(0, program);
+
+                } else {
+                    // quand le program est plus favoris il retourner en bas de la liste
+                    programList.remove(position);
+                    programList.add(program);
+                }
+                notifyDataSetChanged();
+            }
+        });
+    }
+
+    // David modif end 04/12 */
+
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
